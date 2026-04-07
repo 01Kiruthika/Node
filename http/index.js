@@ -3,43 +3,54 @@ const fs = require('fs')
 
 let requestfunction = (req, res) => {
 
-    let myurl = req.url
+  let myurl = req.url
 
-    console.log(myurl);
+  console.log(myurl);
 
 
-    if (myurl === "/") {
-        res.writeHead(200, {
-            'content-type': 'text/plain'
-        })
-        res.end("Hello I am From Server")
-    } else if (myurl === '/home') {
-        res.writeHead(200, {
-            'content-type': 'text/html'
-        })
+  if (myurl === "/") {
+    res.writeHead(200, {
+      'content-type': 'text/plain'
+    })
+    res.end("Hello I am From Server")
+  } else if (myurl === '/home') {
+    res.writeHead(200, {
+      'content-type': 'text/html'
+    })
 
-        // res.write("<html>")
-        // res.write("<head>")
-        // res.write("<title>Practice HTTP</title>")
-        // res.write("</head>")
-        // res.write("<body>")
-        // res.write("<h1>Hello,Welcome to Node js</h1>")
-        // res.write("<h3>About Me</h3>")
-        // res.write("<p>Node.js is a free, open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser</p>")
-        // res.write("</body>")
-        // res.write("</html>")
+    // res.write("<html>")
+    // res.write("<head>")
+    // res.write("<title>Practice HTTP</title>")
+    // res.write("</head>")
+    // res.write("<body>")
+    // res.write("<h1>Hello,Welcome to Node js</h1>")
+    // res.write("<h3>About Me</h3>")
+    // res.write("<p>Node.js is a free, open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser</p>")
+    // res.write("</body>")
+    // res.write("</html>")
 
-        let htmlfile = fs.readFileSync('index.html', {
-            'encoding': 'utf-8'
-        })
-        res.write(htmlfile)
-        res.end()
-    } else if (myurl === '/contact') {
-        res.writeHead(201, {
-            'content-type': 'application/json'
-        })
+    let htmlfile = fs.readFileSync('index.html', {
+      'encoding': 'utf-8'
+    })
+    res.write(htmlfile)
+    res.end()
+  } else if (myurl === '/style.css') {
+    res.writeHead(200, {
+      'content-type': 'text/css'
+    })
 
-        let jsonfile = `[
+    let cssfile = fs.readFileSync('style.css', {
+      'encoding': 'utf-8'
+    })
+    res.write(cssfile)
+    res.end()
+
+  } else if (myurl === '/contact') {
+    res.writeHead(200, {
+      'content-type': 'application/json'
+    })
+
+    let jsonfile = `[
   {
     "title": "Yamaha R15 V4",
     "description": "A sporty 155cc bike with aggressive styling and advanced features like traction control.",
@@ -102,27 +113,29 @@ let requestfunction = (req, res) => {
   }
 ]`
 
-        res.end(jsonfile)
-    } else if (myurl === '/video') {
-        const readStream = fs.createReadStream('./video/Nature1.mp4')
-        res.writeHead(200, {
-            'content-type': 'video/mp4'
-        })
-        readStream.pipe(res)
-        res.end()
-    } else if (myurl === '/image') {
-        const readStream = fs.createReadStream('./Image/img.png')
-        res.writeHead(200, {
-            'content-type': 'image/apng'
-        })
-        readStream.pipe(res)
-        res.end()
-    } else {
-        res.writeHead(404, {
-            'content-type': 'text/plain'
-        })
-        res.end("Sorry,File Not Found")
-    }
+    res.end(jsonfile)
+  } else if (myurl === '/video') {
+    const readStream = fs.createReadStream('./video/Nature1.mp4')
+    // console.log(readStream);
+
+    res.writeHead(200, {
+      'content-type': 'video/mp4'
+    })
+    readStream.pipe(res)
+    // res.end()
+  } else if (myurl === '/image') {
+    const readStream = fs.createReadStream('./Image/img.png')
+    res.writeHead(200, {
+      'content-type': 'image/png'
+    })
+    readStream.pipe(res)
+    // res.end()
+  } else {
+    res.writeHead(404, {
+      'content-type': 'text/plain'
+    })
+    res.end("Sorry,File Not Found")
+  }
 
 }
 
@@ -130,6 +143,6 @@ let requestfunction = (req, res) => {
 const server = http.createServer(requestfunction)
 
 server.listen(7005, () => {
-    console.log("Server will Start http://localhost:7005/");
+  console.log("Server will Start http://localhost:7005/");
 
 })

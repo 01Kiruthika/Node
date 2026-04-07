@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.conatiner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card {
+    /* border: 2px solid; */
+    width: 350px;
+    height: 400px;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+}
+
+.image {
+    width: 350px;
+    height: 200px;
+    /* border-radius: 10px; */
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-radius: 10px; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.description {
+    /* border: 2px solid red; */
+    height: 120px;
+    text-align: center;
+}
+
+.foot {
+    /* border: 2px solid blue; */
+    /* height: 50px; */
+    display: flex;
+    justify-content: space-around;
+    padding: 0px;
+}
+
+.foot button {
+    padding: 5px 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    margin: 8px;
+    border-radius: 5px;
+
+}
