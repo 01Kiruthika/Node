@@ -23,9 +23,9 @@ let routerfunction = (req, res) => {
 
     } else {
         res.writeHead(404, {
-            'content-type': 'text/plain'
-        })
-        res.end("Sorry,File Not Found")
+            "Content-Type": "text/plain"
+        });
+        res.end("Page Not Found");
         return
     }
 
